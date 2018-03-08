@@ -12,6 +12,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.genuinemark.qrapp.RegisterPOJO.RegiserBean;
+import com.genuinemark.qrapp.SimilarProductPOJO.SimilarProductBean;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
+
 public class Similarproducyt extends AppCompatActivity {
 
     Toolbar toolbar;
@@ -50,6 +60,38 @@ public class Similarproducyt extends AppCompatActivity {
         adapter = new GridAdapter(this);
         grid.setAdapter(adapter);
         grid.setLayoutManager(manager);
+
+
+
+
+      /*  Bean b = (Bean) getApplicationContext();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(b.baseurl)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .Build();
+
+
+        ApiAInterface all = retrofit.create(ApiAInterface.class);
+
+        Call<SimilarProductBean> call = all.similar("");
+        call.enqueue(new Callback<SimilarProductBean>() {
+            @Override
+            public void onResponse(Call<SimilarProductBean> call, Response<SimilarProductBean> response) {
+
+
+            }
+
+            @Override
+            public void onFailure(Call<SimilarProductBean> call, Throwable t) {
+
+            }
+        });*/
+
+
+
+
 
 
 

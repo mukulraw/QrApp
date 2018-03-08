@@ -58,6 +58,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:text="CR7 Football studs"
+                        android:id="@+id/title"
                         android:textColor="#000"
                         android:textSize="18sp" />
 
@@ -65,6 +66,7 @@
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="40dp"
+                        android:id="@+id/image"
                         android:layout_alignParentEnd="true"
                         android:src="@drawable/nike2" />
 
@@ -92,6 +94,7 @@
                         android:layout_marginEnd="5dp"
                         android:layout_marginStart="5dp"
                         android:text="Nike"
+                        android:id="@+id/brand"
                         android:textColor="#000" />
 
 
@@ -117,6 +120,7 @@
                         android:layout_marginEnd="5dp"
                         android:layout_marginStart="5dp"
                         android:text="Good"
+                        android:id="@+id/quality"
                         android:textColor="#000" />
 
 
@@ -142,6 +146,7 @@
                         android:layout_marginEnd="5dp"
                         android:layout_marginStart="5dp"
                         android:text="Black CR7"
+                        android:id="@+id/info"
                         android:textColor="#000" />
 
 
@@ -265,6 +270,7 @@
                             android:drawableStart="@drawable/thumb"
                             android:gravity="center_vertical"
                             android:text="112"
+                            android:id="@+id/like"
                             android:textStyle="bold" />
 
                     </LinearLayout>

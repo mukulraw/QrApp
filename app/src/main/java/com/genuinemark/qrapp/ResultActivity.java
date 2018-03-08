@@ -124,18 +124,21 @@ public class ResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
                 final Dialog dialog = new Dialog(ResultActivity.this);
+
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
                 dialog.setContentView(R.layout.dialog);
+
                 dialog.setCancelable(true);
+
                 dialog.show();
 
                 Button submit = dialog.findViewById(R.id.submit);
+
                 submit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
 
                         green.setVisibility(View.VISIBLE);
                         tick.setVisibility(View.VISIBLE);

@@ -27,6 +27,7 @@
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:id="@+id/image"
                     android:src="@drawable/joo" />
 
 
@@ -43,6 +44,7 @@
                         android:layout_marginEnd="5dp"
                         android:layout_marginStart="5dp"
                         android:padding="2dp"
+                        android:id="@+id/title"
                         android:text="CR7 Football Studs"
                         android:textColor="#000" />
 
@@ -67,6 +69,7 @@
                             android:layout_marginEnd="5dp"
                             android:layout_marginStart="5dp"
                             android:text="Nike"
+                            android:id="@+id/brand"
                             android:textColor="#000" />
 
 
@@ -92,6 +95,7 @@
                             android:layout_marginEnd="5dp"
                             android:layout_marginStart="5dp"
                             android:text="Good"
+                            android:id="@+id/quality"
                             android:textColor="#000" />
 
 
@@ -127,6 +131,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="5dp"
+                                android:id="@+id/points"
                                 android:layout_marginStart="5dp"
                                 android:rating="3" />
 
@@ -148,6 +153,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="end"
                                 android:drawablePadding="5dp"
+                                android:id="@+id/like"
                                 android:drawableStart="@drawable/thumb"
                                 android:gravity="center_vertical"
                                 android:text="112" />

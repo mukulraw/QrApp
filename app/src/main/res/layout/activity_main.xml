@@ -9,8 +9,22 @@
 
     <SurfaceView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="480px"
         android:id="@+id/surface"
+        android:layout_centerInParent="true"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/camera"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"
+        android:text="@string/result_text_default"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/surface"
+
         />
 
 

@@ -7,9 +7,6 @@
     tools:context="com.genuinemark.qrapp.ScanAciviity">
 
 
-
-
-
     <fragment
         android:id="@+id/barcode_scanner"
         android:layout_width="match_parent"

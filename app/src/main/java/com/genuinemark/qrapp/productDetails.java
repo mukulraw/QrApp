@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import at.blogc.android.views.ExpandableTextView;
@@ -26,7 +27,9 @@ public class productDetails extends AppCompatActivity {
 
     ExpandableTextView expandableTextView;
 
-    TextView click;
+    TextView click , title , brand ,quality , info , like;
+
+    ImageView nike;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,18 @@ public class productDetails extends AppCompatActivity {
         expandableTextView = findViewById(R.id.view);
 
         click = findViewById(R.id.click);
+
+        title = findViewById(R.id.title);
+
+        brand = findViewById(R.id.brand);
+
+        quality = findViewById(R.id.quality);
+
+        like = findViewById(R.id.like);
+
+        info = findViewById(R.id.info);
+
+        nike = findViewById(R.id.image);
 
         setSupportActionBar(toolbar);
 
