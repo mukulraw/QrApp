@@ -3,6 +3,7 @@ package com.genuinemark.qrapp;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -12,12 +13,29 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.google.android.exoplayer2.ExoPlayerFactory;
+import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.ext.rtmp.RtmpDataSourceFactory;
+import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
+import com.google.android.exoplayer2.extractor.ExtractorsFactory;
+import com.google.android.exoplayer2.source.ExtractorMediaSource;
+import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
+import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
+import com.google.android.exoplayer2.trackselection.TrackSelection;
+import com.google.android.exoplayer2.trackselection.TrackSelector;
+import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
+import com.google.android.exoplayer2.upstream.BandwidthMeter;
+import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 
 import me.relex.circleindicator.CircleIndicator;
 
@@ -26,6 +44,8 @@ public class ResultActivity extends AppCompatActivity {
     Toolbar toolbar;
 
     Button click, click1;
+
+    ImageView logo;
 
     RecyclerView grid;
 
@@ -42,6 +62,8 @@ public class ResultActivity extends AppCompatActivity {
     CircleIndicator indicator;
 
     ViewPager pager;
+
+    SimpleExoPlayer player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +87,8 @@ public class ResultActivity extends AppCompatActivity {
         info = findViewById(R.id.info);
 
         pager = findViewById(R.id.pager);
+
+        logo = findViewById(R.id.logo);
 
         indicator = (CircleIndicator) findViewById(R.id.indicator);
 
@@ -96,6 +120,36 @@ public class ResultActivity extends AppCompatActivity {
         pager.setAdapter(adapter);
 
         indicator.setViewPager(pager);
+
+        SimpleExoPlayerView simpleExoPlayerView = findViewById(R.id.player);
+
+        simpleExoPlayerView.setPlayer(player);
+
+        simpleExoPlayerView.setUseController(false);
+
+
+       /* BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
+
+        TrackSelection.Factory videoTrackSelectionFactory =
+                new AdaptiveTrackSelection.Factory(bandwidthMeter);
+
+        TrackSelector trackSelector =
+                new DefaultTrackSelector(videoTrackSelectionFactory);
+
+        player =
+                ExoPlayerFactory.newSimpleInstance(ResultActivity.this, trackSelector);
+
+        rtmpDataSourceFactory = new RtmpDataSourceFactory();
+
+        ExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
+
+        MediaSource videoSource = new ExtractorMediaSource(Uri.parse(list.get(position).getVideo()),
+                new DefaultHttpDataSourceFactory("exoplayer-codelab"), extractorsFactory, null, null);
+
+        //Log.d("hdfjkhsdf", list.get(position).getVideo());
+
+
+*/
 
         product.setOnClickListener(new View.OnClickListener() {
             @Override

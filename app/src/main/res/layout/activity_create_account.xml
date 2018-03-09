@@ -26,6 +26,8 @@ one step away from your first scan"
             android:layout_marginEnd="18dp"
             android:padding="10dp"/>
 
+
+
         <EditText
             android:id="@+id/name"
             android:layout_width="match_parent"
@@ -36,7 +38,6 @@ one step away from your first scan"
             android:layout_marginTop="18dp"
             android:layout_marginBottom="10dp"
             android:hint="FirstName"
-
             android:padding="10dp"
             android:background="@drawable/blue_stroke"
             android:paddingStart="18dp" />
@@ -86,9 +87,6 @@ one step away from your first scan"
 
 
             </RadioGroup>
-
-
-
         </LinearLayout>
 
 
@@ -148,5 +146,12 @@ one step away from your first scan"
 
     </LinearLayout>
 
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progress"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
 
 </RelativeLayout>

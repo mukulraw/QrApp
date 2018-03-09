@@ -9,6 +9,6 @@ import android.app.Application;
 public class Bean extends Application {
 
 
-    public String BaseURL = "";
-    public String userid = "";
+    public String baseurl = "http://nationproducts.in/";
+
 }
