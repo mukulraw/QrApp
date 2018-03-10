@@ -27,7 +27,7 @@ public class productDetails extends AppCompatActivity {
 
     ExpandableTextView expandableTextView;
 
-    TextView click , title , brand ,quality , info , like;
+    TextView click, title, brand, quality, info, like;
 
     ImageView nike;
 
@@ -103,12 +103,6 @@ public class productDetails extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
-
 
 
     }

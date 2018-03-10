@@ -37,7 +37,7 @@ one step away from your first scan"
             android:layout_marginStart="18dp"
             android:layout_marginTop="18dp"
             android:layout_marginBottom="10dp"
-            android:hint="FirstName"
+            android:hint="Name"
             android:padding="10dp"
             android:background="@drawable/blue_stroke"
             android:paddingStart="18dp" />
@@ -117,6 +117,7 @@ one step away from your first scan"
             android:hint="Email"
             android:visibility="visible"
             android:padding="10dp"
+            android:inputType="textEmailAddress"
             android:background="@drawable/blue_stroke"
             android:paddingStart="18dp" />
         

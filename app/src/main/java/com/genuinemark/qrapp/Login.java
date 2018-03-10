@@ -113,10 +113,11 @@ public class Login extends AppCompatActivity {
 
                                     try {
 
+                                        otp.setText(response.body().getData().getOtp());
+
                                         Toast.makeText(Login.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
 
                                         Log.d("kamal", response.body().getData().getOtp());
-
 
                                     } catch (Exception e) {
 

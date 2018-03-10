@@ -45,6 +45,7 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-scalars:2.0.2'
     compile 'com.google.android.exoplayer:exoplayer:r2.5.1'
     compile 'com.google.android.exoplayer:extension-rtmp:r2.5.1'
+   
 
 
 }

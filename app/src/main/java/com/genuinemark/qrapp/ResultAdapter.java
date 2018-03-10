@@ -11,17 +11,11 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-/**
- * Created by USER on 01-03-2018.
- */
 
 public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.MyViewAdapter> {
 
 
     Context context;
-
-
-
 
     public ResultAdapter(Context context) {
         this.context = context;
@@ -44,7 +38,6 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.MyViewAdap
 
 
 
-
     }
 
     @Override
@@ -60,10 +53,8 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.MyViewAdap
 
         RatingBar ratingBar;
 
-
         public MyViewAdapter(View itemView) {
             super(itemView);
-
 
             title = itemView.findViewById(R.id.title);
 
@@ -76,7 +67,6 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.MyViewAdap
             image = itemView.findViewById(R.id.image);
 
             ratingBar = itemView.findViewById(R.id.points);
-
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

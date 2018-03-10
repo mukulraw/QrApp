@@ -1,14 +1,18 @@
 package com.genuinemark.qrapp;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.genuinemark.qrapp.LoginPOJO.LoginBean;
@@ -27,9 +31,12 @@ public class CreateAccount extends AppCompatActivity {
 
     Button create;
 
-    EditText dob, name, email;
+    EditText name, email;
 
     RadioGroup group;
+
+
+    TextView dob;
 
     ProgressBar bar;
 
@@ -49,6 +56,47 @@ public class CreateAccount extends AppCompatActivity {
         group = findViewById(R.id.group);
 
         bar = findViewById(R.id.progress);
+
+
+        dob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                final Dialog dialog = new Dialog(CreateAccount.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.dialog1);
+                dialog.setCancelable(true);
+                dialog.show();
+
+
+                final DatePicker picker = dialog.findViewById(R.id.picker);
+                Button submit = dialog.findViewById(R.id.submit);
+
+                submit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+
+                        String day = String.valueOf(picker.getDayOfMonth());
+                        String month = String.valueOf(picker.getMonth() + 1);
+                        String year = String.valueOf(picker.getYear());
+
+                        String date1 = day + "-" + month + "-" + year;
+
+                        dob.setText(date1);
+
+                        dialog.dismiss();
+
+
+
+                    }
+                });
+
+
+            }
+        });
+
 
         create.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,23 +176,23 @@ public class CreateAccount extends AppCompatActivity {
 
                             } else {
 
-                                Toast.makeText(CreateAccount.this, "Please select Gender", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CreateAccount.this, "Please select a EmailID ", Toast.LENGTH_SHORT).show();
                             }
 
 
                         } else {
 
-                            Toast.makeText(CreateAccount.this, "Please Enter a EmailID", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CreateAccount.this, "Please Enter a DOB ", Toast.LENGTH_SHORT).show();
                         }
 
 
                     } else {
-                        Toast.makeText(CreateAccount.this, "Please Enter a DOB", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CreateAccount.this, "Please Enter a Gender ", Toast.LENGTH_SHORT).show();
                     }
 
 
                 } else {
-                    Toast.makeText(CreateAccount.this, "Please Enter a  First Name", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateAccount.this, "Please Enter a  Name", Toast.LENGTH_SHORT).show();
                 }
 
 
