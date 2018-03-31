@@ -25,6 +25,7 @@
                 android:layout_height="120dp"
                 android:scaleType="centerCrop"
                 android:layout_margin="3dp"
+                android:id="@+id/image"
                 android:src="@drawable/ssh" />
 
 
@@ -40,6 +41,7 @@
                     android:layout_height="30dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginStart="10dp"
+                    android:id="@+id/logo"
                     android:layout_marginTop="5dp"
                     android:src="@drawable/nike2" />
 
@@ -49,6 +51,7 @@
                     android:layout_marginEnd="5dp"
                     android:layout_marginStart="5dp"
                     android:padding="2dp"
+                    android:id="@+id/title"
                     android:text="CR7 Football Studs"
                     android:textColor="#000" />
 
@@ -73,6 +76,7 @@
                         android:layout_marginEnd="5dp"
                         android:layout_marginStart="5dp"
                         android:text="Nike"
+                        android:id="@+id/brand"
                         android:textColor="#000" />
 
 
@@ -98,6 +102,7 @@
                         android:layout_marginEnd="5dp"
                         android:layout_marginStart="5dp"
                         android:text="Good"
+                        android:id="@+id/quality"
                         android:textColor="#000" />
 
 
@@ -134,7 +139,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="5dp"
                             android:layout_marginStart="5dp"
-                            android:rating="3" />
+                            android:rating="3"
+                            android:id="@+id/rating"/>
 
 
                     </LinearLayout>
@@ -154,6 +160,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
+                            android:id="@+id/like"
                             android:drawableStart="@drawable/thumb"
                             android:gravity="center_vertical"
                             android:drawablePadding="5dp"

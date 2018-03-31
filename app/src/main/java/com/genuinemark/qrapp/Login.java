@@ -95,6 +95,8 @@ public class Login extends AppCompatActivity {
 
                     da.setPhone(m);
 
+                    Log.d("phone", m);
+
                     be.setData(da);
 
                     Call<OtpBean> call = all.otp(be);
@@ -103,45 +105,51 @@ public class Login extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<OtpBean> call, Response<OtpBean> response) {
 
-                            if (Objects.equals(response.body().getStatus(), "1")) {
+                            try {
 
-                                if (otp.getVisibility() == View.GONE) {
+                                if (Objects.equals(response.body().getStatus(), "1")) {
 
-                                    otp.setVisibility(View.VISIBLE);
+                                    if (otp.getVisibility() == View.GONE) {
 
-                                    Log.d("nisha", response.body().getData().getOtp());
+                                        otp.setVisibility(View.VISIBLE);
 
-                                    try {
+                                        Log.d("nisha", response.body().getData().getOtp());
 
-                                        otp.setText(response.body().getData().getOtp());
+                                        try {
+
+                                            otp.setText(response.body().getData().getOtp());
+
+                                            Toast.makeText(Login.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+
+                                            Log.d("kamal", response.body().getData().getOtp());
+
+                                        } catch (Exception e) {
+
+                                            e.printStackTrace();
+                                        }
+
+
+                                    } else {
 
                                         Toast.makeText(Login.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-
-                                        Log.d("kamal", response.body().getData().getOtp());
-
-                                    } catch (Exception e) {
-
-                                        e.printStackTrace();
                                     }
-
 
                                 } else {
 
-                                    Toast.makeText(Login.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                    Intent i = new Intent(Login.this, CreateAccount.class);
+
+                                    i.putExtra("phone", charSequence.toString());
+
+                                    startActivity(i);
+
+                                    finish();
                                 }
 
-                            } else {
-
-                                Intent i = new Intent(Login.this, CreateAccount.class);
-
-                                i.putExtra("phone", charSequence.toString());
-
-                                startActivity(i);
-
-
+                            } catch (Exception e) {
+                                e.printStackTrace();
                             }
 
-
+                            bar.setVisibility(View.GONE);
                         }
 
                         @Override
@@ -188,7 +196,6 @@ public class Login extends AppCompatActivity {
                                 .addConverterFactory(GsonConverterFactory.create())
                                 .build();
 
-
                         ApiAInterface all = retrofit.create(ApiAInterface.class);
 
                         LoginRequestbean log = new LoginRequestbean();
@@ -203,43 +210,50 @@ public class Login extends AppCompatActivity {
 
                         log.setData(d);
 
-
                         Call<LoginBean> call = all.login(log);
 
                         call.enqueue(new Callback<LoginBean>() {
                             @Override
                             public void onResponse(Call<LoginBean> call, Response<LoginBean> response) {
 
-                                if (Objects.equals(response.body().getStatus(), "1")) {
+                                try {
+
+                                    if (Objects.equals(response.body().getStatus(), "1")) {
+
+                                        edit.putString("userId", response.body().getData().getUserId());
+
+                                        edit.putString("name", response.body().getData().getName());
+
+                                        edit.putString("phone", response.body().getData().getPhone());
+
+                                        edit.putString("dob", response.body().getData().getDob());
+
+                                        edit.putString("gender", response.body().getData().getGender());
+
+                                        edit.putString("email", response.body().getData().getEmail());
+
+                                        edit.apply();
 
 
-                                    edit.putString("userId", response.body().getData().getUserId());
+                                        Intent i = new Intent(Login.this, Home.class);
 
-                                    edit.putString("name", response.body().getData().getUserId());
+                                        startActivity(i);
 
-                                    edit.putString("phone", response.body().getData().getUserId());
-
-                                    edit.putString("dob", response.body().getData().getUserId());
-
-                                    edit.putString("gender", response.body().getData().getUserId());
-
-                                    edit.putString("email", response.body().getData().getUserId());
-
-                                    edit.apply();
+                                        finish();
 
 
-                                    Intent i = new Intent(Login.this, Home.class);
-
-                                    startActivity(i);
-
-                                    finish();
-
-                                    Toast.makeText(Login.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Login.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
 
 
-                                } else {
+                                    } else {
 
-                                    Toast.makeText(Login.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Login.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+
+
+                                } catch (Exception e) {
+
+                                    e.printStackTrace();
                                 }
 
                                 bar.setVisibility(View.GONE);

@@ -13,13 +13,13 @@ public class SimilarProduct {
     @SerializedName("productName")
     @Expose
     private String productName;
-    @SerializedName("productId")
+    @SerializedName("qrId")
     @Expose
-    private String productId;
-    @SerializedName("productImage")
+    private String qrId;
+    @SerializedName("product_image")
     @Expose
     private String productImage;
-    @SerializedName("brandName")
+    @SerializedName("brand_name")
     @Expose
     private String brandName;
     @SerializedName("quality")
@@ -43,12 +43,12 @@ public class SimilarProduct {
         this.productName = productName;
     }
 
-    public String getProductId() {
-        return productId;
+    public String getQrId() {
+        return qrId;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public void setQrId(String qrId) {
+        this.qrId = qrId;
     }
 
     public String getProductImage() {

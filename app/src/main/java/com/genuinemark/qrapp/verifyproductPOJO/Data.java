@@ -12,9 +12,9 @@ import java.util.List;
 public class Data {
 
 
-    @SerializedName("productId")
+    @SerializedName("qrId")
     @Expose
-    private String productId;
+    private String qrId;
     @SerializedName("companyLogo")
     @Expose
     private String companyLogo;
@@ -24,12 +24,6 @@ public class Data {
     @SerializedName("images")
     @Expose
     private List<Image> images = null;
-    @SerializedName("brandName")
-    @Expose
-    private String brandName;
-    @SerializedName("brandLogo")
-    @Expose
-    private String brandLogo;
     @SerializedName("productName")
     @Expose
     private String productName;
@@ -76,12 +70,12 @@ public class Data {
     @Expose
     private String verificationStatus;
 
-    public String getProductId() {
-        return productId;
+    public String getQrId() {
+        return qrId;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public void setQrId(String qrId) {
+        this.qrId = qrId;
     }
 
     public String getCompanyLogo() {
@@ -106,22 +100,6 @@ public class Data {
 
     public void setImages(List<Image> images) {
         this.images = images;
-    }
-
-    public String getBrandName() {
-        return brandName;
-    }
-
-    public void setBrandName(String brandName) {
-        this.brandName = brandName;
-    }
-
-    public String getBrandLogo() {
-        return brandLogo;
-    }
-
-    public void setBrandLogo(String brandLogo) {
-        this.brandLogo = brandLogo;
     }
 
     public String getProductName() {

@@ -1,24 +1,18 @@
 package com.genuinemark.qrapp;
 
-import android.content.Context;
-import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RatingBar;
-import android.widget.TextView;
 
-
+/*
 public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.MyViewAdapter> {
 
 
     Context context;
 
-    public ResultAdapter(Context context) {
+    List<SimilarProducts>list = new ArrayList<>();
+
+    public ResultAdapter(Context context ,List<SimilarProducts>list ) {
+
         this.context = context;
+        this.list = list;
 
     }
 
@@ -34,15 +28,35 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.MyViewAdap
     @Override
     public void onBindViewHolder(@NonNull MyViewAdapter holder, int position) {
 
+        SimilarProducts item = list.get(position);
+
+        holder.title.setText(item.getProductImage());
+        holder.brand.setText(item.getBrandName());
+        holder.quality.setText(item.getQuality());
+        holder.ratingBar.setRating((Float) item.getRating());
+        holder.like.setText(item.getRecommendation());
+
+
+        DisplayImageOptions options = new DisplayImageOptions.Builder().
+                cacheInMemory(true).cacheOnDisk(true).resetViewBeforeLoading(false).build();
+
+        ImageLoader loader = ImageLoader.getInstance();
+        loader.displayImage(item.getProductImage() , holder.image , options);
 
 
 
 
     }
 
+    public void setgrid(List<SimilarProducts>list){
+
+        this.list = list;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
-        return 5;
+        return list.size();
     }
 
     public class MyViewAdapter extends RecyclerView.ViewHolder {
@@ -81,3 +95,4 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.MyViewAdap
         }
     }
 }
+*/

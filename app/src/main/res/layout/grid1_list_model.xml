@@ -45,7 +45,6 @@
                         android:layout_marginStart="5dp"
                         android:padding="2dp"
                         android:id="@+id/title"
-                        android:text="CR7 Football Studs"
                         android:textColor="#000" />
 
 
@@ -68,7 +67,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="5dp"
                             android:layout_marginStart="5dp"
-                            android:text="Nike"
                             android:id="@+id/brand"
                             android:textColor="#000" />
 
@@ -94,7 +92,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="5dp"
                             android:layout_marginStart="5dp"
-                            android:text="Good"
                             android:id="@+id/quality"
                             android:textColor="#000" />
 

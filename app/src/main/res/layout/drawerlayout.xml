@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:clickable="true"
+    android:focusable="true"
+    android:visibility="visible"
+
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="18dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="Welcome"
+            android:id="@+id/welcome"
+            />
+
+
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Scan Qr Code"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:textColor="@color/colorPrimaryDark"
+            android:drawableStart="@drawable/ic_qr_code"
+            android:drawablePadding="10dp"
+            android:id="@+id/scan"
+            android:padding="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tutorial"
+            android:textColor="@color/colorPrimaryDark"
+            android:id="@+id/tutorial"
+            android:gravity="center_vertical"
+            android:drawableStart="@drawable/ic_laptop"
+            android:drawablePadding="10dp"
+            android:padding="10dp"/>
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Invite Friends"
+            android:drawableStart="@drawable/ic_wedding_invitation"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/colorPrimaryDark"
+            android:padding="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cdcdcd"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:id="@+id/logout"
+            android:textColor="@color/colorPrimaryDark"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/logout"
+            android:padding="10dp"/>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -9,23 +9,15 @@ import com.google.gson.annotations.SerializedName;
 
 public class VerifyProductBean {
 
-    @SerializedName("status")
-    @Expose
-    private String status;
     @SerializedName("message")
     @Expose
     private String message;
+    @SerializedName("status")
+    @Expose
+    private String status;
     @SerializedName("data")
     @Expose
     private Data data;
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     public String getMessage() {
         return message;
@@ -35,6 +27,14 @@ public class VerifyProductBean {
         this.message = message;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public Data getData() {
         return data;
     }
@@ -42,7 +42,4 @@ public class VerifyProductBean {
     public void setData(Data data) {
         this.data = data;
     }
-
-
-
 }

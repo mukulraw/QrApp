@@ -7,12 +7,18 @@ import com.genuinemark.qrapp.LoginRequestPOJO.LoginRequestbean;
 import com.genuinemark.qrapp.OtpPOJO.OtpBean;
 import com.genuinemark.qrapp.OtpRequestPOJO.OtprequestBean;
 import com.genuinemark.qrapp.ProductDetailsPOJO.ProductDetailsBean;
+import com.genuinemark.qrapp.ProductDetailsRequestPOJO.ProfileDetailRequestBean;
 import com.genuinemark.qrapp.RateProductPOJO.RateProductBean;
+import com.genuinemark.qrapp.RateProductRequestPOJO.RateRequestBean;
 import com.genuinemark.qrapp.RegisterPOJO.RegiserBean;
 import com.genuinemark.qrapp.RegisterRequestPOJO.RegisterRequestBean;
 import com.genuinemark.qrapp.SimilarProductPOJO.SimilarProductBean;
+import com.genuinemark.qrapp.SimilarProductRequestPOJO.SimilarRequestBean;
 import com.genuinemark.qrapp.SocialLogin1POJO.SocialLogin1Bean;
 import com.genuinemark.qrapp.SocialLogin2POJO.SocialLogin2Bean;
+import com.genuinemark.qrapp.VerifyRequestPOJO.VerifyRequestBean;
+import com.genuinemark.qrapp.locationRequestPOJO.locationRequestBean;
+import com.genuinemark.qrapp.locationRequestPOJO.locationResponseBean;
 import com.genuinemark.qrapp.verifyproductPOJO.VerifyProductBean;
 
 import retrofit2.Call;
@@ -49,7 +55,7 @@ public interface ApiAInterface {
             );
 
 
-  /*  @Multipart("")
+   /* @Multipart("")
     Call<SocialLogin1Bean> social1
             (@Part("email") String pjkfdghkhd ,
              @Part("pid") String pdfsgd
@@ -77,42 +83,42 @@ public interface ApiAInterface {
              @Part("newPassword") String pmm ,
              @Part("confirmPassword") String pjfks
             );
+*/
 
-
-    @Multipart("")
+    @Headers({"Content-Type: application/json"})
+    @POST("qrcode/api/api.php")
     Call<ProductDetailsBean> productdetailsbean
-            (@Part("productId") String dfjsp ,
-             @Part("userId") String hjsdfhp
+            (@Body ProfileDetailRequestBean product
             );
 
 
-    @Multipart("")
-    Call<RateProductBean> rateproductbean
-            (@Part("productId") String pfld ,
-             @Part("userId") String pmfsdkf ,
-             @Part("rating") String plgl ,
-             @Part("coment") String pfsjg
-            );
-
-
-
-    @Multipart("")
-    Call<VerifyProductBean> verifybean
-            (@Part("productId") String pdf ,
-             @Part("latitude") String plfj ,
-             @Part("longitude") String pdmfkjdal ,
-             @Part("imei") String pfskdl ,
-             @Part("battery") String pdffklda ,
-             @Part("userId") String pdfjkd ,
-             @Part("verificationCode") String pdfkds
-            );
-
-
-    @Multipart("")
+    @Headers({"Content-Type: application/json"})
+    @POST("qrcode/api/api.php")
     Call<SimilarProductBean> similar
-            (@Part("brandId") String p
-            );*/
+            (@Body SimilarRequestBean bean
+             );
 
+
+
+    @Headers({"Content-Type: application/json"})
+    @POST("qrcode/api/api.php")
+    Call<VerifyProductBean> verifybean
+            (@Body VerifyRequestBean bean
+            );
+
+
+    @Headers({"Content-Type: application/json"})
+    @POST("qrcode/api/api.php")
+    Call<locationResponseBean> updateLocation
+            (@Body locationRequestBean bean
+            );
+
+
+    @Headers({"Content-Type: application/json"})
+    @POST("qrcode/api/api.php")
+    Call<RateProductBean> req
+            (@Body RateRequestBean bean
+            );
 
 
 }

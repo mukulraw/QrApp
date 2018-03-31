@@ -11,9 +11,9 @@ import java.util.List;
 
 public class Data {
 
-    @SerializedName("productId")
+    @SerializedName("qrId")
     @Expose
-    private String productId;
+    private String qrId;
     @SerializedName("companyLogo")
     @Expose
     private String companyLogo;
@@ -75,12 +75,12 @@ public class Data {
     @Expose
     private String verificationStatus;
 
-    public String getProductId() {
-        return productId;
+    public String getQrId() {
+        return qrId;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public void setQrId(String qrId) {
+        this.qrId = qrId;
     }
 
     public String getCompanyLogo() {

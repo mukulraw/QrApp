@@ -1,14 +1,20 @@
 package com.genuinemark.qrapp;
 
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -28,6 +34,14 @@ public class Home extends AppCompatActivity {
 
     TextView barcode, qrcode;
 
+    DrawerLayout drawerLayout;
+
+    TextView welcome, scan, tutorial, logout;
+
+
+    SharedPreferences pref;
+    SharedPreferences.Editor edit;
+
     private static final int ACTIVITY_RESULT_QR_DRDROID = 0;
 
     @Override
@@ -35,11 +49,22 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        toolbar = findViewById(R.id.toolbar);
+        pref = getSharedPreferences("pref", Context.MODE_PRIVATE);
+
+        edit = pref.edit();
+        welcome = findViewById(R.id.welcome);
+
+        scan = findViewById(R.id.scan);
+
+        tutorial = findViewById(R.id.tutorial);
+
+        logout = findViewById(R.id.logout);
 
         qrcode = findViewById(R.id.qr);
 
         barcode = findViewById(R.id.barcode);
+
+        toolbar = findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
 
@@ -47,7 +72,7 @@ public class Home extends AppCompatActivity {
 
         toolbar.setTitleTextColor(Color.WHITE);
 
-        toolbar.setNavigationIcon(R.drawable.arrow);
+        toolbar.setNavigationIcon(R.drawable.blackarrow);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +82,34 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        toolbar.setTitle("Home");
+        // toolbar.setTitle("");
+
+        //drawerLayout = findViewById(R.id.drawer);
+
+        drawerLayout = findViewById(R.id.drawer);
+
+        String s = pref.getString("name", "");
+        welcome.setText("Welcome " + s);
+
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+            }
+        };
+
+        drawerLayout.setDrawerListener(actionBarDrawerToggle);
+
+        actionBarDrawerToggle.syncState();
+
 
 
         /*qrcode.setOnClickListener(new View.OnClickListener() {
@@ -99,9 +151,42 @@ public class Home extends AppCompatActivity {
 */
 
 
+        scan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent i = new Intent(Home.this, MainActivity.class);
+                startActivity(i);
+
+            }
+        });
 
 
+        tutorial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                Intent i = new Intent(Home.this, Pagers.class);
+                startActivity(i);
+
+
+            }
+        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent i = new Intent(Home.this , Login.class);
+
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                startActivity(i);
+
+                finish();
+
+            }
+        });
 
 
         qrcode.setOnClickListener(new View.OnClickListener() {
@@ -141,6 +226,8 @@ public class Home extends AppCompatActivity {
 
         if (id == R.id.notification) {
 
+            Intent i = new Intent(Home.this, Pagers.class);
+            startActivity(i);
 
 
         }
@@ -148,7 +235,22 @@ public class Home extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-   /* @Override
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+
+            drawerLayout.closeDrawer(GravityCompat.START);
+
+
+        } else {
+            super.onBackPressed();
+        }
+
+    }
+
+
+
+    /* @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
