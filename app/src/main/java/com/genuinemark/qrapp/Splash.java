@@ -19,7 +19,7 @@ public class Splash extends AppCompatActivity {
 
     Timer timer;
 
-    String[] PERMISSIONS = { Manifest.permission.CAMERA , Manifest.permission.ACCESS_COARSE_LOCATION , Manifest.permission.ACCESS_FINE_LOCATION};
+    String[] PERMISSIONS = { Manifest.permission.CAMERA , Manifest.permission.ACCESS_COARSE_LOCATION , Manifest.permission.ACCESS_FINE_LOCATION , Manifest.permission.READ_PHONE_STATE};
 
     final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
 
@@ -83,7 +83,8 @@ public class Splash extends AppCompatActivity {
         {
             if (ActivityCompat.checkSelfPermission(getApplicationContext() , Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
                     && ActivityCompat.checkSelfPermission(getApplicationContext() , Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                    && ActivityCompat.checkSelfPermission(getApplicationContext() , Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+                    && ActivityCompat.checkSelfPermission(getApplicationContext() , Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                    && ActivityCompat.checkSelfPermission(getApplicationContext() , Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED)
             {
 
                 startApp();
@@ -91,7 +92,7 @@ public class Splash extends AppCompatActivity {
             }
             else
             {
-                if (ActivityCompat.shouldShowRequestPermissionRationale(this , Manifest.permission.CAMERA) || ActivityCompat.shouldShowRequestPermissionRationale(this , Manifest.permission.ACCESS_COARSE_LOCATION) || ActivityCompat.shouldShowRequestPermissionRationale(this , Manifest.permission.ACCESS_FINE_LOCATION)) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this , Manifest.permission.CAMERA) || ActivityCompat.shouldShowRequestPermissionRationale(this , Manifest.permission.ACCESS_COARSE_LOCATION) || ActivityCompat.shouldShowRequestPermissionRationale(this , Manifest.permission.ACCESS_FINE_LOCATION) || ActivityCompat.shouldShowRequestPermissionRationale(this , Manifest.permission.READ_PHONE_STATE)) {
 
                     Toast.makeText(getApplicationContext() , "Permissions are required for this app" , Toast.LENGTH_SHORT).show();
                     finish();

@@ -265,6 +265,7 @@
                             android:layout_height="match_parent"
                             android:layout_gravity="end"
                             android:drawablePadding="5dp"
+                            android:visibility="gone"
                             android:drawableStart="@drawable/thumb"
                             android:gravity="center_vertical"
                             android:textStyle="bold" />

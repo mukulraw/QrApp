@@ -151,6 +151,7 @@
                                 android:layout_gravity="end"
                                 android:drawablePadding="5dp"
                                 android:id="@+id/like"
+                                android:visibility="gone"
                                 android:drawableStart="@drawable/thumb"
                                 android:gravity="center_vertical"
                                 android:text="112" />

@@ -628,9 +628,159 @@ public class ResultActivity extends AppCompatActivity implements EasyVideoCallba
 
                                         Toast.makeText(ResultActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
 
-                                        green.setVisibility(View.VISIBLE);
-                                        tick.setVisibility(View.VISIBLE);
+                                        //green.setVisibility(View.VISIBLE);
+                                        //tick.setVisibility(View.VISIBLE);
                                         dialog.dismiss();
+
+
+                                        bar.setVisibility(View.VISIBLE);
+
+                                        Bean b = (Bean) getApplicationContext();
+
+                                        Retrofit retrofit = new Retrofit.Builder()
+                                                .baseUrl(b.baseurl)
+                                                .addConverterFactory(ScalarsConverterFactory.create())
+                                                .addConverterFactory(GsonConverterFactory.create())
+                                                .build();
+
+                                        ApiAInterface all = retrofit.create(ApiAInterface.class);
+
+                                        ProfileDetailRequestBean pro = new ProfileDetailRequestBean();
+
+                                        pro.setAction("product_details");
+
+                                        com.genuinemark.qrapp.ProductDetailsRequestPOJO.Data data = new com.genuinemark.qrapp.ProductDetailsRequestPOJO.Data();
+
+                                        qrid = getIntent().getStringExtra("data");
+
+                                        data.setQrId(getIntent().getStringExtra("data"));
+
+                                        Log.d("nisha", getIntent().getStringExtra("data"));
+
+                                        Log.d("kamla", pref.getString("userId", ""));
+
+                                        data.setUserId(pref.getString("userId", ""));
+
+                                        pro.setData(data);
+
+                                        Call<ProductDetailsBean> call1 = all.productdetailsbean(pro);
+
+                                        call1.enqueue(new Callback<ProductDetailsBean>() {
+                                            @Override
+                                            public void onResponse(Call<ProductDetailsBean> call, Response<ProductDetailsBean> response) {
+
+                                                if (Objects.equals(response.body().getStatus(), "1")) {
+
+                                                    adapter1.setgrid(response.body().getData().getSimilarProducts());
+
+                                                    final PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), response.body().getData().getImages());
+
+                                                    pager.setAdapter(adapter);
+
+                                                    indicator.setViewPager(pager);
+
+                                                    brand.setText(response.body().getData().getBrandName());
+
+                                                    quality.setText(response.body().getData().getQuality());
+
+                                                    manufacture.setText(response.body().getData().getManufacturingDate());
+
+                                                    title.setText(response.body().getData().getProductName());
+
+                                                    try {
+                                                        rating.setRating(Float.parseFloat(response.body().getData().getRating()));
+                                                    }catch (Exception e)
+                                                    {
+                                                        e.printStackTrace();
+                                                    }
+
+
+                                                    s = response.body().getData().getBrandId();
+
+                                                    //Toast.makeText(ResultActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+
+                                                    DisplayImageOptions options = new DisplayImageOptions.Builder().cacheOnDisk(true).cacheInMemory(true)
+                                                            .resetViewBeforeLoading(false).build();
+
+                                                    ImageLoader loader = ImageLoader.getInstance();
+
+                                                    loader.displayImage(response.body().getData().getCompanyLogo(), logo, options);
+
+                                                    if (Objects.equals(response.body().getData().getVerificationStatus(), "verified")) {
+
+
+                                                        green.setVisibility(View.VISIBLE);
+                                                        gray.setVisibility(View.GONE);
+                                                        red.setVisibility(View.GONE);
+
+
+                                                    }else  if (Objects.equals(response.body().getData().getVerificationStatus(), "Fake")){
+
+                                                        green.setVisibility(View.GONE);
+                                                        gray.setVisibility(View.GONE);
+                                                        red.setVisibility(View.VISIBLE);
+
+
+                                                    }
+
+                                                    else {
+
+                                                        green.setVisibility(View.GONE);
+                                                        gray.setVisibility(View.VISIBLE);
+                                                        red.setVisibility(View.GONE);
+
+                                                    }
+
+
+
+                                                    if (Objects.equals(response.body().getData().getIsVideoAvailable() , "1")){
+
+                                                        player.setVisibility(View.VISIBLE);
+
+                                                        uri = response.body().getData().getVideoUri();
+
+                                                        //Toast.makeText(ResultActivity.this, response.body().getData().getIsVideoAvailable(), Toast.LENGTH_SHORT).show();
+
+                                                    }
+                                                    else {
+
+                                                        player.setVisibility(View.GONE);
+                                                    }
+
+
+                                                    if (Objects.equals(response.body().getData().getIsRated(), "TRUE")) {
+
+                                                        arrow.setVisibility(View.GONE);
+
+                                                    }
+
+                                                    else {
+
+                                                        arrow.setVisibility(View.VISIBLE);
+
+                                                    }
+
+                                                } else {
+
+                                                    Toast.makeText(ResultActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                                }
+
+
+                                                bar.setVisibility(View.GONE);
+
+
+                                            }
+
+                                            @Override
+                                            public void onFailure(Call<ProductDetailsBean> call, Throwable t) {
+
+
+                                                bar.setVisibility(View.GONE);
+
+                                            }
+                                        });
+
+
 
                                     } else {
                                         Toast.makeText(ResultActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
