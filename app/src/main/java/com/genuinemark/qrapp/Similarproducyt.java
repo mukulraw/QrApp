@@ -125,18 +125,25 @@ public class Similarproducyt extends AppCompatActivity {
             @Override
             public void onResponse(Call<SimilarProductBean> call, Response<SimilarProductBean> response) {
 
-                if (Objects.equals(response.body().getStatus(), "1")) {
+                try {
+                    if (Objects.equals(response.body().getStatus(), "1")) {
 
-                    adapter.setgrid(response.body().getData());
+                        adapter.setgrid(response.body().getData());
 
-                    Log.d("kamal", String.valueOf(response.body().getData().size()));
+                        Log.d("kamal", String.valueOf(response.body().getData().size()));
 
-                    Toast.makeText(Similarproducyt.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Similarproducyt.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
 
-                } else {
+                    } else {
 
-                    Toast.makeText(Similarproducyt.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Similarproducyt.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
                 }
+
+
 
                 bar.setVisibility(View.GONE);
             }

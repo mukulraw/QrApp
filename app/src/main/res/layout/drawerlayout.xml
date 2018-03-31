@@ -36,7 +36,7 @@
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical"
             android:textColor="@color/colorPrimaryDark"
-            android:drawableStart="@drawable/ic_qr_code"
+            android:drawableStart="@drawable/ic_qqrrccooddee"
             android:drawablePadding="10dp"
             android:id="@+id/scan"
             android:padding="10dp"/>
@@ -48,7 +48,7 @@
             android:textColor="@color/colorPrimaryDark"
             android:id="@+id/tutorial"
             android:gravity="center_vertical"
-            android:drawableStart="@drawable/ic_laptop"
+            android:drawableStart="@drawable/ic_ttuuttoorr"
             android:drawablePadding="10dp"
             android:padding="10dp"/>
 
@@ -58,7 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Invite Friends"
-            android:drawableStart="@drawable/ic_wedding_invitation"
+            android:drawableStart="@drawable/ic_iinnvviittee"
             android:drawablePadding="10dp"
             android:gravity="center_vertical"
             android:textColor="@color/colorPrimaryDark"
@@ -80,7 +80,7 @@
             android:id="@+id/logout"
             android:textColor="@color/colorPrimaryDark"
             android:drawablePadding="10dp"
-            android:drawableStart="@drawable/logout"
+            android:drawableStart="@drawable/ic_lloogg"
             android:padding="10dp"/>
 
 

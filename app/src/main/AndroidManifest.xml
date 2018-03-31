@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
@@ -15,24 +16,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Home" />
-        <activity android:name=".Login">
-
-        </activity>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".Home"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Login"
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="barcode" />
 
-        <activity android:name=".ResultActivity" />
-        <activity android:name=".Similarproducyt" />
-        <activity android:name=".productDetails" />
-        <activity android:name=".ScanAciviity" />
+        <activity android:name=".ResultActivity"
+            android:configChanges="orientation|keyboardHidden|screenLayout|screenSize"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Similarproducyt"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".productDetails"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ScanAciviity"
+            android:screenOrientation="portrait"/>
 
 
 
-        <activity android:name=".Splash" >
+        <activity android:name=".Splash"
+            android:screenOrientation="portrait">
 
 
         <intent-filter>
@@ -41,8 +50,10 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
-        <activity android:name=".CreateAccount" />
-        <activity android:name=".Pagers" />
+        <activity android:name=".CreateAccount"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Pagers"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

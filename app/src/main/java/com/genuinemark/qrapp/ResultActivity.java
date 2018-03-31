@@ -6,7 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.media.MediaMetadataRetriever;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -25,6 +28,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -33,6 +37,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.easyvideoplayer.EasyVideoCallback;
+import com.afollestad.easyvideoplayer.EasyVideoPlayer;
 import com.genuinemark.qrapp.ProductDetailsPOJO.Image;
 import com.genuinemark.qrapp.ProductDetailsPOJO.ProductDetailsBean;
 import com.genuinemark.qrapp.ProductDetailsPOJO.SimilarProduct;
@@ -42,8 +48,21 @@ import com.genuinemark.qrapp.RateProductRequestPOJO.RateRequestBean;
 import com.genuinemark.qrapp.VerifyRequestPOJO.Data;
 import com.genuinemark.qrapp.VerifyRequestPOJO.VerifyRequestBean;
 import com.genuinemark.qrapp.verifyproductPOJO.VerifyProductBean;
+import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.ext.rtmp.RtmpDataSourceFactory;
+import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
+import com.google.android.exoplayer2.extractor.ExtractorsFactory;
+import com.google.android.exoplayer2.source.ExtractorMediaSource;
+import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
+import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
+import com.google.android.exoplayer2.trackselection.TrackSelection;
+import com.google.android.exoplayer2.trackselection.TrackSelector;
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
+import com.google.android.exoplayer2.upstream.BandwidthMeter;
+import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -63,7 +82,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
-public class ResultActivity extends AppCompatActivity {
+public class ResultActivity extends AppCompatActivity implements EasyVideoCallback {
 
     Toolbar toolbar;
 
@@ -87,7 +106,7 @@ public class ResultActivity extends AppCompatActivity {
 
     ViewPager pager;
 
-    SimpleExoPlayer player;
+
 
     RatingBar rating;
 
@@ -106,6 +125,11 @@ public class ResultActivity extends AppCompatActivity {
     SharedPreferences.Editor edi;
 
     String qrid;
+
+    RelativeLayout player;
+
+
+    String uri = "";
 
 
     @Override
@@ -187,11 +211,13 @@ public class ResultActivity extends AppCompatActivity {
         list1 = new ArrayList<>();
 
 
-        final SimpleExoPlayerView simpleExoPlayerView = findViewById(R.id.player);
+        player = (RelativeLayout) findViewById(R.id.player);
 
-        simpleExoPlayerView.setPlayer(player);
 
-        simpleExoPlayerView.setUseController(false);
+        /*simpleExoPlayerView.setPlayer(player);
+
+        simpleExoPlayerView.setUseController(false);*/
+
 
         bar.setVisibility(View.VISIBLE);
 
@@ -247,7 +273,13 @@ public class ResultActivity extends AppCompatActivity {
 
                     title.setText(response.body().getData().getProductName());
 
-                    rating.setRating(Float.parseFloat(response.body().getData().getRating()));
+                    try {
+                        rating.setRating(Float.parseFloat(response.body().getData().getRating()));
+                    }catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+
 
                     s = response.body().getData().getBrandId();
 
@@ -286,16 +318,19 @@ public class ResultActivity extends AppCompatActivity {
                     }
 
 
+
                      if (Objects.equals(response.body().getData().getIsVideoAvailable() , "1")){
 
-                        simpleExoPlayerView.setVisibility(View.VISIBLE);
+                        player.setVisibility(View.VISIBLE);
+
+                        uri = response.body().getData().getVideoUri();
 
                         //Toast.makeText(ResultActivity.this, response.body().getData().getIsVideoAvailable(), Toast.LENGTH_SHORT).show();
 
                     }
                     else {
 
-                         simpleExoPlayerView.setVisibility(View.GONE);
+                         player.setVisibility(View.GONE);
                      }
 
 
@@ -411,7 +446,49 @@ public class ResultActivity extends AppCompatActivity {
 
 
 
-       /* BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
+
+        player.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                final Dialog dialog = new Dialog(ResultActivity.this , android.R.style.Theme_Black_NoTitleBar_Fullscreen);
+                dialog.setContentView(R.layout.player_popup);
+                dialog.show();
+
+                ImageButton babc = dialog.findViewById(R.id.imageButton);
+
+                EasyVideoPlayer pl = dialog.findViewById(R.id.player);
+                pl.setCallback(ResultActivity.this);
+
+
+                babc.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        dialog.dismiss();
+
+                    }
+                });
+
+
+                // Sets the source to the HTTP URL held in the TEST_URL variable.
+                // To play files, you can use Uri.fromFile(new File("..."))
+
+                pl.setSource(Uri.parse(uri));
+                //pl.setSource(Uri.parse("http://nationproducts.in/qrcode/upload/video.mp4"));
+
+
+            }
+        });
+
+
+
+
+
+
+
+        /*BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
 
         TrackSelection.Factory videoTrackSelectionFactory =
                 new AdaptiveTrackSelection.Factory(bandwidthMeter);
@@ -419,20 +496,19 @@ public class ResultActivity extends AppCompatActivity {
         TrackSelector trackSelector =
                 new DefaultTrackSelector(videoTrackSelectionFactory);
 
-        player =
-                ExoPlayerFactory.newSimpleInstance(ResultActivity.this, trackSelector);
 
-        rtmpDataSourceFactory = new RtmpDataSourceFactory();
+
+        RtmpDataSourceFactory rtmpDataSourceFactory = new RtmpDataSourceFactory();
 
         ExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
 
-        MediaSource videoSource = new ExtractorMediaSource(Uri.parse(list.get(position).getVideo()),
+        MediaSource videoSource = new ExtractorMediaSource(Uri.parse("https://www.youtube.com/watch?v=6ZnfsJ6mM5c"),
                 new DefaultHttpDataSourceFactory("exoplayer-codelab"), extractorsFactory, null, null);
 
         //Log.d("hdfjkhsdf", list.get(position).getVideo());
-
-
 */
+
+
 
         product.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -592,6 +668,51 @@ public class ResultActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onStarted(EasyVideoPlayer player) {
+
+    }
+
+    @Override
+    public void onPaused(EasyVideoPlayer player) {
+
+    }
+
+    @Override
+    public void onPreparing(EasyVideoPlayer player) {
+
+    }
+
+    @Override
+    public void onPrepared(EasyVideoPlayer player) {
+
+    }
+
+    @Override
+    public void onBuffering(int percent) {
+
+    }
+
+    @Override
+    public void onError(EasyVideoPlayer player, Exception e) {
+
+    }
+
+    @Override
+    public void onCompletion(EasyVideoPlayer player) {
+
+    }
+
+    @Override
+    public void onRetry(EasyVideoPlayer player, Uri source) {
+
+    }
+
+    @Override
+    public void onSubmit(EasyVideoPlayer player, Uri source) {
+
+    }
+
 
     class PagerAdapter extends FragmentStatePagerAdapter {
 
@@ -723,6 +844,14 @@ public class ResultActivity extends AppCompatActivity {
 
             }
         }
+    }
+
+
+    private Bitmap createThumbnailAtTime(String filePath, int timeInSeconds){
+        MediaMetadataRetriever mMMR = new MediaMetadataRetriever();
+        mMMR.setDataSource(filePath);
+        //api time unit is microseconds
+        return mMMR.getFrameAtTime(timeInSeconds*1000000, MediaMetadataRetriever.OPTION_CLOSEST_SYNC);
     }
 
 
